@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Assignment 4 - Simple Payroll</title><link rel="stylesheet" href="style.css"></head><body>
+<nav><a class="brand" href="index.html">CS 1130</a><ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="Conversion.html">Assignment 1</a></li>
+<li><a href="Income_Tax.html">Assignment 2</a></li>
+<li><a href="FSA.html">Assignment 3</a></li>
+<li><a href="Payroll.html">Assignment 4</a></li>
+</ul></nav>
+<main class="hero">
+<h1>Assignment #4 - Simple Payroll</h1>
+<label for="name">Employee name:</label><input type="text" id="name">
+<label for="hours">Hours worked this week:</label><input type="number" id="hours" min="0" step="any">
+<label for="rate">Hourly rate (PHP):</label><input type="number" id="rate" min="0" step="any">
+<button onclick="payroll()">Compute Payroll</button>
+<div id="result"></div>
+<p><small>First 40 hours are regular pay. Hours beyond 40 are overtime at 1.25x the hourly rate.</small></p>
+<a href="index.html">Back to Home</a>
+</main>
+<script>
+function payroll(){
+  var name=document.getElementById("name").value||"Employee";
+  var hours=parseFloat(document.getElementById("hours").value);
+  var rate=parseFloat(document.getElementById("rate").value);
+  var out=document.getElementById("result");
+  if(isNaN(hours)||isNaN(rate)||hours<0||rate<0){out.textContent="Please enter valid hours and rate.";return;}
+  var regHours=Math.min(hours,40), otHours=Math.max(hours-40,0);
+  var regPay=regHours*rate, otPay=otHours*rate*1.25, gross=regPay+otPay;
+  var f=function(n){return "PHP "+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});};
+  out.textContent="Employee: "+name+"\nRegular Pay ("+regHours+" hrs): "+f(regPay)+"\nOvertime Pay ("+otHours+" hrs): "+f(otPay)+"\nGross Pay: "+f(gross);
+}
+</script></body></html>

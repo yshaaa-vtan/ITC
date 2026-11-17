@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Assignment 2 - Income Tax Calculator</title><link rel="stylesheet" href="style.css"></head><body>
+<nav><a class="brand" href="index.html">CS 1130</a><ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="Conversion.html">Assignment 1</a></li>
+<li><a href="Income_Tax.html">Assignment 2</a></li>
+<li><a href="FSA.html">Assignment 3</a></li>
+<li><a href="Payroll.html">Assignment 4</a></li>
+</ul></nav>
+<main class="hero">
+<h1>Assignment #2 - Income Tax Calculator</h1>
+<label for="income">Annual taxable income (PHP):</label><input type="number" id="income" min="0" step="any">
+<button onclick="calcTax()">Compute Tax</button>
+<div id="result"></div>
+<a href="index.html">Back to Home</a>
+</main>
+<script>
+function calcTax(){
+  var income=parseFloat(document.getElementById("income").value);
+  var out=document.getElementById("result");
+  if(isNaN(income)||income<0){out.textContent="Please enter a valid income.";return;}
+  var tax;
+if (income <= 250000) tax = 0;
+else if (income <= 400000) tax = (income - 250000) * 0.15;
+else if (income <= 800000) tax = 22500 + (income - 400000) * 0.20;
+else if (income <= 2000000) tax = 102500 + (income - 800000) * 0.25;
+else if (income <= 8000000) tax = 402500 + (income - 2000000) * 0.30;
+else tax = 2202500 + (income - 8000000) * 0.35;
+  var f=function(n){return "PHP "+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});};
+  out.textContent="Taxable Income: "+f(income)+"\nIncome Tax: "+f(tax)+"\nNet Income: "+f(income-tax)+"\nEffective Rate: "+(income>0?(tax/income*100).toFixed(2):"0.00")+"%";
+}
+</script></body></html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Assignment 3 - Loops</title><link rel="stylesheet" href="style.css"></head><body>
+<nav><a class="brand" href="index.html">CS 1130</a><ul>
+<li><a href="index.html">Home</a></li>
+<li><a href="Conversion.html">Assignment 1</a></li>
+<li><a href="Income_Tax.html">Assignment 2</a></li>
+<li><a href="FSA.html">Assignment 3</a></li>
+<li><a href="Payroll.html">Assignment 4</a></li>
+</ul></nav>
+<main class="hero">
+<h1>Assignment #3 - Factorial, Sum and Average</h1>
+<label for="n">Enter N (a positive whole number):</label><input type="number" id="n" min="1" step="1">
+<button onclick="compute()">Compute</button>
+<div id="result"></div>
+<a href="index.html">Back to Home</a>
+</main>
+<script>
+function compute(){
+  var n=parseInt(document.getElementById("n").value);
+  var out=document.getElementById("result");
+  if(isNaN(n)||n<1){out.textContent="Please enter a whole number of 1 or more.";return;}
+  // Factorial using a WHILE loop
+  var fact=1,i=n;
+  while(i>1){fact*=i;i--;}
+  // Sum using a DO-WHILE loop
+  var sum=0,j=1;
+  do{sum+=j;j++;}while(j<=n);
+  // Average using a FOR loop
+  var total=0;
+  for(var k=1;k<=n;k++){total+=k;}
+  var avg=total/n;
+  out.textContent="N = "+n+"\nFactorial (while loop): "+(n>170?"too large to compute":fact.toLocaleString("en-US"))+"\nSum (do-while loop): "+sum+"\nAverage (for loop): "+avg;
+}
+</script></body></html>

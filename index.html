@@ -1,0 +1,25 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Student Assignments</title><link rel="stylesheet" href="style.css"></head><body>
+<nav><a class="brand" href="index.html">CS 1130</a><ul>
+</ul></nav>
+<main class="hero">
+<h1>ITC Assignments</h1>
+<div class="sub">I am <b id="typed"></b><span class="cursor">|</span></div>
+<p>This website showcases a collection of interactive web programming assignments covering unit conversions (temperature and length), an income tax calculator, loop-based mathematical computations (factorial, sum, and average), and a simple payroll system. Built using fundamental HTML, CSS, and JavaScript, these tools demonstrate practical user interaction and real-time calculations.</p>
+<a class="btn" href="Conversion.html">View My Work</a>
+<a href="Conversion.html">Assignment #1 - Conversion</a>
+<a href="Income_Tax.html">Assignment #2 - Income Tax Calculator</a>
+<a href="FSA.html">Assignment #3 - Factorial, Sum and Average</a>
+<a href="Payroll.html">Assignment #4 - Simple Payroll</a>
+</main>
+<script>
+var words=["V-Calc"],w=0,c=0,del=false;
+function type(){
+  var word=words[w];
+  document.getElementById("typed").textContent=word.substring(0,c);
+  if(!del&&c<word.length){c++;setTimeout(type,120);}
+  else if(!del){del=true;setTimeout(type,1200);}
+  else if(c>0){c--;setTimeout(type,60);}
+  else{del=false;w=(w+1)%words.length;setTimeout(type,300);}
+}
+type();
+</script></body></html>
